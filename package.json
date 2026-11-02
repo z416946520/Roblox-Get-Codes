@@ -1,0 +1,25 @@
+{
+  "name": "robloxcodesget",
+  "productName": "RobloxCodesGET",
+  "version": "1.1.2",
+  "description": "Roblox 代码聚合与游戏搜索桌面工具 — 多站点抓取、有效性判断、使用条件提醒",
+  "main": "src/main.js",
+  "author": "theKing",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "electron .",
+    "test:crawl": "node scripts/test-crawl.js",
+    "icon": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/make-icon.ps1",
+    "pack": "node scripts/package-app.js",
+    "zip": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/package-zip.ps1",
+    "dist": "npm run icon && npm run pack && npm run zip"
+  },
+  "dependencies": {
+    "cheerio": "^1.2.0"
+  },
+  "devDependencies": {
+    "@electron/packager": "^19.0.0",
+    "electron": "^44.0.0"
+  }
+}

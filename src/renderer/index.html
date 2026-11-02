@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; img-src 'self' data: https://*.rbxcdn.com; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none';"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>RobloxCodesGET</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="brand">
+          <img class="brand-icon" src="assets/icon.png" alt="RobloxCodesGET" />
+          <div class="brand-text">
+            <span class="brand-name">RobloxCodes<span>GET</span></span>
+            <span class="brand-sub">多站点 Roblox 代码聚合器</span>
+          </div>
+        </div>
+        <div class="topbar-actions">
+          <span class="author-chip">作者 <strong>theKing</strong></span>
+          <button class="ghost-btn" id="aboutBtn" type="button">关于</button>
+        </div>
+      </header>
+
+      <main class="main">
+        <section id="searchView" class="search-view">
+          <div class="hero">
+            <div class="hero-kicker">
+              <span class="pulse-dot"></span>
+              ROBLOX CODE INTELLIGENCE
+            </div>
+            <h1>搜索游戏，<span class="gradient-text">一次抓完全部代码</span></h1>
+            <p class="hero-sub">
+              聚合多个公开代码站点，交叉判断 <b>最新</b>、<b>有效</b>、<b>过期</b>，
+              并标出等级、加群、关注等使用条件。
+            </p>
+          </div>
+
+          <form id="searchForm" class="search-box" autocomplete="off">
+            <span class="search-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M10.8 18.1a7.3 7.3 0 1 0 0-14.6 7.3 7.3 0 0 0 0 14.6Zm5.4-1.8L21 21"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                />
+              </svg>
+            </span>
+            <input
+              id="searchInput"
+              type="text"
+              placeholder="搜索 Roblox 游戏，例如 Blox Fruits、Anime Zero"
+              spellcheck="false"
+              maxlength="200"
+            />
+            <button id="searchBtn" class="primary-btn" type="submit">
+              <span class="btn-label">搜索游戏</span>
+            </button>
+          </form>
+          <div class="search-hints">
+            <span>支持游戏名 / Roblox 链接 / Place ID，搜不到可直接按名称抓取</span>
+            <span class="hint-divider">·</span>
+            <span>热门：</span>
+            <button class="link-btn" data-query="Blox Fruits" type="button">Blox Fruits</button>
+            <button class="link-btn" data-query="Anime Zero" type="button">Anime Zero</button>
+            <button class="link-btn" data-query="Grow a Garden" type="button">Grow a Garden</button>
+            <button class="link-btn" data-query="Steal a Brainrot" type="button">Steal a Brainrot</button>
+          </div>
+
+          <div id="searchState" class="search-state" hidden></div>
+          <div id="searchResults" class="game-grid"></div>
+
+          <div id="welcomePanel" class="welcome-panel">
+            <div class="feature">
+              <span class="feature-num">01</span>
+              <h3>多网页抓取</h3>
+              <p>同时请求 Roblox Den、RoCodes、Beebom、RPS 等公开代码页，自动去重合并。</p>
+            </div>
+            <div class="feature">
+              <span class="feature-num">02</span>
+              <h3>状态交叉判断</h3>
+              <p>结合页面分区、更新时间、发布日期与多源投票，区分最新、有效、待验证、过期。</p>
+            </div>
+            <div class="feature">
+              <span class="feature-num">03</span>
+              <h3>使用条件提醒</h3>
+              <p>自动提取等级、加群、Discord、关注、会员、购买等兑换前置条件。</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="gameView" class="game-view" hidden>
+          <button id="backBtn" class="back-btn" type="button">
+            <span aria-hidden="true">←</span> 返回搜索
+          </button>
+
+          <div id="gameHero" class="game-hero"></div>
+
+          <div id="sourceBar" class="source-bar"></div>
+
+          <div class="toolbar">
+            <div class="filter-group" id="filterGroup">
+              <button class="filter-chip active" data-filter="all" type="button">
+                全部 <span data-count="all">0</span>
+              </button>
+              <button class="filter-chip" data-filter="latest" type="button">
+                <i class="dot latest"></i>最新 <span data-count="latest">0</span>
+              </button>
+              <button class="filter-chip" data-filter="valid" type="button">
+                <i class="dot valid"></i>有效 <span data-count="valid">0</span>
+              </button>
+              <button class="filter-chip" data-filter="check" type="button">
+                <i class="dot check"></i>待验证 <span data-count="check">0</span>
+              </button>
+              <button class="filter-chip" data-filter="expired" type="button">
+                <i class="dot expired"></i>过期 <span data-count="expired">0</span>
+              </button>
+            </div>
+            <div class="toolbar-actions">
+              <label class="toggle">
+                <input id="requireFilter" type="checkbox" />
+                <span>只看有使用条件</span>
+              </label>
+              <input
+                id="codeSearch"
+                class="mini-input"
+                type="search"
+                placeholder="在代码中筛选…"
+                spellcheck="false"
+              />
+              <button id="copyValidBtn" class="ghost-btn" type="button">复制有效代码</button>
+              <button id="exportBtn" class="ghost-btn" type="button">导出 CSV</button>
+              <button id="refreshBtn" class="primary-btn small" type="button">刷新抓取</button>
+            </div>
+          </div>
+
+          <div id="crawlStatus" class="crawl-status" hidden></div>
+          <div id="codeList" class="code-list"></div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <span>RobloxCodesGET · 作者 <strong>theKing</strong></span>
+        <span>数据来自公开网页，代码可能随时失效；最终以游戏内兑换结果为准。</span>
+        <span id="footerVersion"></span>
+      </footer>
+    </div>
+
+    <div id="aboutModal" class="modal" hidden>
+      <div class="modal-backdrop" data-close="about"></div>
+      <div class="modal-card about-card" role="dialog" aria-modal="true" aria-label="关于">
+        <button class="modal-close" data-close="about" type="button" aria-label="关闭">×</button>
+        <div class="about-head">
+          <img src="assets/icon.png" alt="图标" class="about-icon" />
+          <div>
+            <h2>RobloxCodes<span>GET</span></h2>
+            <p class="about-author">作者 <strong>theKing</strong> · <span id="aboutVersion">v1.1.2</span></p>
+          </div>
+        </div>
+        <p class="about-lead">
+          一个轻量的 Roblox 代码聚合桌面工具：搜索游戏、抓取多个公开代码页面、
+          合并去重，并给出有效性判断与使用条件提醒。官方搜索未收录的游戏会自动通过
+          公开代码站反查 Place ID，也可以直接按名称抓取。
+        </p>
+        <div class="about-grid">
+          <div>
+            <h3>状态判断</h3>
+            <ul>
+              <li><b class="t-latest">最新</b>：近期发布、页面新代码分区，或本地首次发现。</li>
+              <li><b class="t-valid">有效</b>：活跃来源确认，且页面更新时间较新。</li>
+              <li><b class="t-check">待验证</b>：来源冲突、只有待检查标记，或页面较旧。</li>
+              <li><b class="t-expired">过期</b>：来源明确标记为过期 / 失效。</li>
+            </ul>
+          </div>
+          <div>
+            <h3>使用条件</h3>
+            <p>
+              从代码描述中提取等级、加入群组、Discord、关注/订阅、Game Pass、
+              会员、购买、限量等条件。条件来自网页文本，实际兑换要求以游戏内提示为准。
+            </p>
+            <h3>数据来源</h3>
+            <p>
+              Roblox 官方搜索接口，以及 Roblox Den、RoCodes、Beebom、
+              Rock Paper Shotgun、Gamer Journalist 等公开代码页面。
+            </p>
+          </div>
+        </div>
+        <p class="about-note">
+          本工具仅读取公开网页，不登录账号、不绕过付费墙。遇到 Cloudflare 安全验证时，
+          请在“抓取详情”里优先点「系统验证」，用本机 Edge/Chrome 完成验证；
+          应用会读取页面并写入缓存。自动弹窗已关闭，「应用内验证」作为备选。
+        </p>
+      </div>
+    </div>
+
+    <div id="sourcesModal" class="modal" hidden>
+      <div class="modal-backdrop" data-close="sources"></div>
+      <div class="modal-card sources-card" role="dialog" aria-modal="true" aria-label="抓取来源">
+        <button class="modal-close" data-close="sources" type="button" aria-label="关闭">×</button>
+        <h2>本次抓取来源</h2>
+        <div id="sourcesContent"></div>
+      </div>
+    </div>
+
+    <div id="toast" class="toast" hidden></div>
+
+    <script src="app.js"></script>
+  </body>
+</html>

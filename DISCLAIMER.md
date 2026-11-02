@@ -99,11 +99,13 @@
 
 6.1 本软件的源代码与文档依据 **MIT License** 授权（全文见 [LICENSE](LICENSE)），使用者可在该许可的范围内自由使用、修改、分发，**但必须保留原著作权声明与许可声明**。
 
-6.2 MIT 许可**不授予**使用者对任何第三方内容的任何权利。
+6.2 MIT 许可**仅及于**作者独立编写的代码与文档，**不授予**使用者对任何第三方内容的任何权利。第三方内容的权利归属与使用限制见下方第六·三条至第六·五条。
 
 6.3 "Roblox"是 Roblox Corporation 的商标或注册商标。本软件与 Roblox Corporation、任何游戏开发商、任何数据源网站之间不存在隶属、合作、赞助、代理或背书关系。名称的提及仅用于事实性描述与兼容性说明。
 
-6.4 若任何第三方内容权利人认为本软件呈现的内容侵犯其权利，请联系作者（见第十一条），作者将在核实后于合理期限内移除相关内容。
+6.4 任何第三方内容权利人认为本软件呈现的内容侵犯其权利的，可通过第十一条联系作者；作者将在核实后于合理期限内移除相关内容。
+
+6.5 本协议与本行下方的"第三方内容与商标声明"共同构成对 LICENSE 中 MIT 条款的补充说明；两者不冲突时同时适用，冲突时以本条及第三方内容声明为准。
 
 ---
 
@@ -160,4 +162,21 @@
 
 ### English Summary（非约束性摘要，以中文为准）
 
-This software is a local, open-source (MIT) information-aggregation utility. It reads publicly accessible web pages, parses publicly displayed redemption codes, and displays them locally. It is not affiliated with Roblox Corporation, does not interact with the Roblox client, does not automate CAPTCHAs, and does not operate user accounts. All data originates from third parties and is provided "AS IS" without warranty. To the maximum extent permitted by law, the author disclaims all liability, including for account penalties, data loss, and inaccurate or expired codes. MIT license does not extend to Roblox Content, Codes, or other third-party content. The Chinese text controls.
+This software is a local, open-source (MIT) information-aggregation utility. It reads publicly accessible web pages, parses publicly displayed redemption codes, and displays them locally. It is not affiliated with Roblox Corporation, does not interact with the Roblox client, does not automate CAPTCHAs, and does not operate user accounts. All data originates from third parties and is provided "AS IS" without warranty. To the maximum extent permitted by law, the author disclaims all liability, including for account penalties, data loss, and inaccurate or expired codes. The MIT license covers only the author's own code; it grants no rights to Roblox Content, Codes, or other third-party content. The Chinese text controls.
+
+---
+
+## 第三方内容与商标声明 / Third-Party Content & Trademark Notice
+
+> 该节位于 MIT 许可正文之外，不属于 MIT 授权条款，仅作权利边界说明。
+
+1. **许可范围**：本项目 LICENSE 中的 MIT 许可仅适用于作者独立编写的源代码、文档与图标；不延伸至 Roblox 平台内容、游戏资产、可兑换代码、任何第三方网站内容或其商标。
+
+2. **商标归属**："Roblox" 及其标识为 Roblox Corporation 的商标；各游戏名称与图标归其开发商所有；各数据源站点名称与内容归其运营方所有。本项目对上述名称的提及仅用于事实性描述、兼容性说明与引用来源，不构成任何形式的授权、隶属、合作、赞助或背书。
+
+3. **代码内容**：可兑换代码为游戏运营方公开发布并公开可获取的信息，本项目不主张对其的任何权利。本项目不存储、再发布或商业化第三方代码数据库，仅在本地缓存网页供使用者个人即时阅读。
+
+4. **链接**：本项目 README 中列出的第三方链接仅为信息来源说明。作者不对第三方站点的内容、可用性或安全性负责，亦不为其行为背书。
+
+5. **下架请求**：权利人可依据免责协议第十一条提出删除请求；经核实后作者将在合理期限内移除相关内容或停止分发。
+
